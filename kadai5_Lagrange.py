@@ -4,49 +4,64 @@ import matplotlib.pyplot as plt
 import math
 
 
-def ln(x_arr, x_index, X):
-    coef_arr = np.delete(x_arr, x_index)
-    print coef_arr
+def ln(samples_arr, x_index, X):
+    coef_arr = np.delete(samples_arr, x_index)
     numerator = 1.0
     denominator = 1.0
+    l = 1.0
+    l_der = 1.0
     
     for i in xrange(len(coef_arr)):
         numerator = numerator * (X - coef_arr[i])
-        denominator = denominator * (x_arr[x_index] - coef_arr[i]) 
-        print(numerator, denominator)
+        denominator = denominator * (samples_arr[x_index] - coef_arr[i]) 
+        
+        l = l * (numerator / denominator)
+        l_der = (l + (X - samples_arr[i + 1] * l_der))
 
     result = numerator / denominator
 
-    print(result)
     return result
 
-        
-ori_x = np.arange(0, 1, 0.01)
+
+# def ln_1(samples_arr, x_index, X):
+#     coef_arr = np.delete(samples_arr, x_index)
+#     numerator = 1.0
+#     denominator = 1.0
+#     l = 1.0
+#     l_der = 1.0
+    
+#     for i in xrange(len(coef_arr)):
+
+#         l_der = ((l + (X - coef_arr[i]) * l_der)) / (samples_arr[x_index]) 
+#         l = l * (X - coef_arr[i]) / (samples_arr[x_index] - coef_arr[i])
+
+#         print(l, l_der)
+
+# return l, l_der
+
+    
+ori_x = np.linspace(0, 1, 100)
 ori_y = np.cos(ori_x * np.pi)
 
-
-
-
-L_x = np.arange(0, 1, 1/3)
+L_x = np.linspace(0, 1, 3)
 ref = np.cos(L_x * np.pi)
 
 n = len(L_x)
 
-test_x = np.arange(0.05, 1, 0.02)
+test_x = np.linspace(0, 1, 100)
 l_mat = np.zeros([len(test_x), n])
+l_der_mat = np.zeros([len(test_x), n])
+
 
 for m in xrange(len(test_x)):
     for i in xrange(n):
-        print ("this is l_vec's %dth element\n"%(i))
-        l_mat[m, i] = ln(L_x, i, test_x[m])
+        l_mat[m, i], l_der_mat[m, i] = ln_1(L_x, i, test_x[m])
 
-print l_mat
+print l_mat,l_der_mat
 
 L_y = np.dot(ref ,l_mat.T)
 
 print L_y
-
-
 
 # n = 3
 

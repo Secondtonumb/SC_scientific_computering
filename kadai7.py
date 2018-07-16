@@ -10,6 +10,7 @@ y = np.zeros(stride + 1)
 y_adms_3 = np.zeros(stride + 1)
 y_adms_4 = np.zeros(stride + 1)
 
+y_acc = 0.5 * np.sin(x) - 0.5 * np.cos(x) + 1.5 * np.exp(-x)
 
 def f(x, y):
     f = np.sin(x) - y
@@ -92,29 +93,33 @@ for i in xrange(3, len(x) - 1):
 
 plt.figure(figsize=(11.69,8.27))
 plt.subplot(321)
-plt.title("Plot by Runge-Kutta methods(step = 0.01)")
-plt.plot(x, y, label="RB method")
+plt.title("Plot of Accuracy Root(step = 0.01)")
+plt.plot(x, y_acc, label="Acc")
 plt.legend(fontsize=10)
 
 plt.subplot(322)
-plt.title("Plot by Runge-Kutta methods(step = 0.01)")
-plt.plot(x, y, label="RB method")
+plt.title("Plot of Accuracy Root(step = 0.01)")
+plt.plot(x, y_acc, label="Acc")
 plt.legend(fontsize=10)
 
 plt.subplot(323)
-plt.plot(x, y_adms_3,label="Adam methods(m = 3)", color='r')
+plt.title("Plot by Adams methods(m = 3)")
+plt.plot(x, y_adms_3,label="Adams methods(m = 3)", color='r')
 plt.legend(fontsize=10)
 
 plt.subplot(324)
-plt.plot(x, y_adms_4,label="Adam methods(m = 4)", color='r')
+plt.title("Plot by Adams methods(m = 4)")
+plt.plot(x, y_adms_4,label="Adams methods(m = 4)", color='r')
 plt.legend(fontsize=10)
 
 plt.subplot(325)
-plt.plot(x, y - y_adms_3,label="Error RB - Adams(3)",color='g')
+plt.plot(x, y_acc - y_adms_3,label="Error(Acc - Adams(3))",color='g')
 plt.legend(fontsize=10)
 
 plt.subplot(326)
-plt.plot(x, y - y_adms_4,label="Error RB - Adams(4)",color='g')
+plt.plot(x, y_acc - y_adms_4,label="Error(Acc- Adams(4))",color='g')
 plt.legend(fontsize=10)
 
 plt.show()
+
+print y - y_acc

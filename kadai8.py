@@ -42,7 +42,7 @@ x_init = np.ones(10)
 Acc = np.linalg.inv(A).dot(b)
 print("Accuracy Root")
 
-print Acc
+print(Acc)
 # Jacobi Method
 J_conv = []
 J_result = x_init
@@ -56,7 +56,7 @@ while np.linalg.norm(old - J_result) > 1e-9:
     # print J_result
 # print J_conv
 print("Jacobi Method Result")
-print J_result
+print(J_result)
 # Gauss-Seidel Method
 
 GS_conv = []

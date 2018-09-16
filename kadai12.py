@@ -9,7 +9,6 @@ from mpl_toolkits.mplot3d import Axes3D
 
 # Define Function u
 
-
 def u(x, y):
     res = (np.sinh(np.pi * x) / np.sinh(np.pi)) * np.sin(np.pi * y)
     return res

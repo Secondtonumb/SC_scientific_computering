@@ -65,13 +65,13 @@ def Adams_4(x_arr, y_arr, h):
 y[0] = 1
 step = x[1]
 
-for i in xrange(1, len(x)):
+for i in range(1, len(x)):
     y[i] = RK_method(x[i - 1], y[i - 1], step)
 
 y_adms_3[0: 3] = y[0: 3]
 y_adms_4[0: 4] = y[0: 4]
 
-for i in xrange(2, len(x) - 1):
+for i in range(2, len(x) - 1):
     x_array = np.array([x[i],
                         x[i - 1],
                         x[i - 2]])
@@ -80,7 +80,7 @@ for i in xrange(2, len(x) - 1):
                         y_adms_3[i - 2]])
     y_adms_3[i + 1] = Adams_3(x_array, y_array, step)
 
-for i in xrange(3, len(x) - 1):
+for i in range(3, len(x) - 1):
     x_array = np.array([x[i],
                         x[i - 1],
                         x[i - 2],
@@ -122,4 +122,4 @@ plt.legend(fontsize=10)
 
 plt.show()
 
-print y - y_acc
+print(y - y_acc)

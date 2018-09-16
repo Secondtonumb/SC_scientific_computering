@@ -23,7 +23,7 @@ A = np.zeros([10, 10])
 
 A[0, 0] = 4
 
-for i in xrange(1, 10):
+for i in range(1, 10):
     A[i, i] = 4
     A[i, i - 1] = -2
     A[i - 1, i] = -1
@@ -88,9 +88,9 @@ print("SOR Method result")
 print(SOR_result)
 
 plt.ylabel("log(Norm)")
-plt.plot(xrange(len(J_conv)), np.log(J_conv), 'r.',label = "Jacobi Method")
-plt.plot(xrange(len(GS_conv)), np.log(GS_conv), 'g.', label = "Gauss Seidel Method")
-plt.plot(xrange(len(SOR_conv)), np.log(SOR_conv), 'b.', label = "SOR Method (omega = 1.2) ")
+plt.plot(range(len(J_conv)), np.log(J_conv), 'r.',label = "Jacobi Method")
+plt.plot(range(len(GS_conv)), np.log(GS_conv), 'g.', label = "Gauss Seidel Method")
+plt.plot(range(len(SOR_conv)), np.log(SOR_conv), 'b.', label = "SOR Method (omega = 1.2) ")
 plt.legend(fontsize = 10)
 
 plt.show()

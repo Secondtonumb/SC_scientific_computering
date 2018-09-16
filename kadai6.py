@@ -31,7 +31,6 @@ def main():
 
     y1 = np.sqrt(1 - x1 ** 2)
     y2 = np.sqrt(1 - x2 ** 2)
-
     
     a = trape(y1, args.n)
     print ("台形公式の結果:%f        誤差:%f"%(a, np.pi / 4 - a ))
